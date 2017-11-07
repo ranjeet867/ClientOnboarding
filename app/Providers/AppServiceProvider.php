@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Monolog\Handler\LogEntriesHandler;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Logentries Integration
+        $logEntriesHandler = new LogEntriesHandler(env('LOGENTRIES_TOKEN'));
+        $log = $this->app['log']->getMonolog();
+        $log->pushHandler($logEntriesHandler);
     }
 }

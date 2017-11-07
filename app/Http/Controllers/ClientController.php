@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use League\Csv\Reader;
 use League\Csv\Writer;
+use Validator;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\StoreClient;
 
 class ClientController extends Controller
 {
@@ -36,9 +38,23 @@ class ClientController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(StoreClient $request)
     {
-        //
+
+        /*$validator = Validator::make($request->all(), [
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('clients/create')
+                ->withErrors($validator)
+                ->withInput();
+        }*/
+
+
+        dd($request);
+
     }
 
     /**

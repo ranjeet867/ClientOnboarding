@@ -74,12 +74,12 @@
                                 @if ($page != 1)
                                     <li><a href="{{ url('clients?page=1')}}">«</a></li>
                                 @endif
-                                @for ($i = 1; $i <= $count/10; $i++)
+                                @for ($i = 1; $i <= round($count/10); $i++)
 
                                     <li><a href="{{ url('clients?page=' . $i)  }}"
                                            @if ($page == $i) class="active" @endif >{{$i}}</a></li>
                                 @endfor
-                                @if ($page != $count/10)
+                                @if ($page != round($count/10) and $page != 1)
                                     <li><a href="{{ url('clients?page=' . $count/10)}}">»</a></li>
                                 @endif
 

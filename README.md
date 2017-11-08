@@ -12,7 +12,7 @@ Live Demo : http://35.196.193.75/clients
     Tokenizer PHP Extension
     XML PHP Extension
     
-####External Library Added
+#### External Library Added
 
 Used for laravel forms generation
 
@@ -24,11 +24,11 @@ Used for csv read and write. It has pagination feature to paginate csv data
 
 
 
-####Third party tools used
+#### Third party tools used
 
 1. logentries.com to save logs in cloud
 2. codeclimate is used to check code quality
-3. AWS is used for hosting
+3. Google Cloud Services is used for hosting
 
 #### In progress
 

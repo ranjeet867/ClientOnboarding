@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/') }}">Home</a></li>
                 <li><a href="{{ url('clients') }}">Clients</a></li>
-                <li><a href="{{ url('clients/create') }}">Add Clients</a></li>
+                <li><a href="{{ url('clients/create') }}">Add Client</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

@@ -38,7 +38,7 @@ class StoreClient extends FormRequest
             'zip' => 'required',
             'education.*.degree' => 'required|string',
             'education.*.college' => 'required|string',
-            'education.*.year' => 'required|numeric|min:27000',
+            'education.*.year' => 'required|numeric|min:1900',
         ];
     }
 

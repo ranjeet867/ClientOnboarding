@@ -2,7 +2,7 @@
 $(document).ready(function() {
     var educationIndex = 0;
     $('#addClient')
-        // Add button click handler
+        // Add button click handlerT
         .on('click', '.addButton', function() {
             educationIndex++;
             var $template = $('#EducationTemplate'),
@@ -15,9 +15,9 @@ $(document).ready(function() {
 
             // Update the name attributes
             $clone
-                .find('[name="college"]').attr('name', 'education[' + educationIndex + '][college]').attr('required', 'required').end()
-                .find('[name="degree"]').attr('name', 'education[' + educationIndex + '][degree]').attr('required', 'required').end()
-                .find('[name="year"]').attr('name', 'education[' + educationIndex + '][year]').attr('required', 'required').end();
+                .find('[name="college"]').removeAttr('disabled').attr('name', 'education[' + educationIndex + '][college]').attr('required', 'required').end()
+                .find('[name="degree"]').removeAttr('disabled').attr('name', 'education[' + educationIndex + '][degree]').attr('required', 'required').end()
+                .find('[name="year"]').removeAttr('disabled').attr('name', 'education[' + educationIndex + '][year]').attr('required', 'required').end();
 
         })
 

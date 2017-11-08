@@ -1,4 +1,5 @@
 @extends('clients.layouts.default')
+@section('title', $title)
 @section('content')
     <div id="row">
         <div class="col-lg-8 col-lg-offset-2 mt-4">
@@ -7,6 +8,12 @@
     </div>
     <div class="col-lg-8 col-lg-offset-2 well">
         <div class="row">
+
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
 
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -408,13 +415,13 @@
                     <div class="form-group hide" id="EducationTemplate">
                         <div class="row">
                             <div class="col-xs-4">
-                                <input type="text" class="form-control" name="college" placeholder="College"/>
+                                <input type="text" class="form-control" name="college" placeholder="College" disabled="disabled">
                             </div>
                             <div class="col-xs-4">
-                                <input type="text" class="form-control" name="degree" placeholder="Degree"/>
+                                <input type="text" class="form-control" name="degree" placeholder="Degree" disabled="disabled">
                             </div>
                             <div class="col-xs-2">
-                                <input type="number" class="form-control" name="year" placeholder="Year" min="1900"/>
+                                <input type="number" class="form-control" name="year" placeholder="Year" min="1900" disabled="disabled">
                             </div>
                             <div class="col-xs-1">
                                 <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i>

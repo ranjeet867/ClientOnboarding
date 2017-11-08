@@ -1,4 +1,4 @@
-<title>@yield('title', 'Home') | {{ env('APP_NAME') }}</title>
+<title>@yield('title') | {{ env('APP_NAME') }}</title>
 
 
 <meta charset="utf-8">

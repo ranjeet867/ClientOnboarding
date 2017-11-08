@@ -1,4 +1,5 @@
 @extends('clients.layouts.default')
+@section('title', 'Home')
 @section('content')
     <div class="jumbotron mt-4">
         <h1 class="display-3">Client Onboarding!</h1>

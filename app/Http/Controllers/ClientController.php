@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use League\Csv\Reader;
-use League\Csv\Writer;
-use League\Csv\Statement;
-use Validator;
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\StoreClient;
 use File;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use League\Csv\Reader;
+use League\Csv\Statement;
+use League\Csv\Writer;
 use View;
 
 class ClientController extends Controller
 {
-
     protected $file;
 
     /**
@@ -22,8 +20,9 @@ class ClientController extends Controller
      */
     public function __construct()
     {
-        $this->file = storage_path() . '/csv/clientData.csv';
+        $this->file = storage_path().'/csv/clientData.csv';
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +35,7 @@ class ClientController extends Controller
         $reader = Reader::createFromPath($this->file, 'r');
         $reader->setHeaderOffset(0);
         $stmt = (new Statement())
-            ->offset(10*($page-1))
+            ->offset(10 * ($page - 1))
             ->limit(10);
 
         $records = $stmt->process($reader);
@@ -46,6 +45,7 @@ class ClientController extends Controller
         $data['records'] = $records->getRecords();
 
         View::share('title', 'Clients Listings');
+
         return view('clients.index', $data);
     }
 
@@ -57,6 +57,7 @@ class ClientController extends Controller
     public function create()
     {
         View::share('title', 'Add Client');
+
         return view('clients.create', []);
     }
 
@@ -69,7 +70,7 @@ class ClientController extends Controller
     {
         $request->request->remove('_token');
         $request['education'] = json_encode($request->get('education'));
-        $request['address'] = str_replace("\r\n", "", $request->get('address'));
+        $request['address'] = str_replace("\r\n", '', $request->get('address'));
         $array = $request->toArray();
 
         $checkFile = File::exists($this->file);
@@ -84,7 +85,7 @@ class ClientController extends Controller
 
         if (!$checkFile) {
             $writer->insertOne(['First Name', 'Last Name', 'DOB', 'Mobile', 'E-mail', 'Nationality', 'Address', 'Gender', 'Country',
-                'City' , 'State', 'Zip', 'Education']); //Inserting Header
+                'City', 'State', 'Zip', 'Education', ]); //Inserting Header
         }
 
         $writer->insertOne($array);
@@ -92,13 +93,13 @@ class ClientController extends Controller
         Log::info('A New Client Created');
 
         return redirect()->back()->with('message', 'Successfully added');
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
@@ -109,7 +110,8 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
@@ -120,7 +122,8 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update($id)
@@ -131,7 +134,8 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)

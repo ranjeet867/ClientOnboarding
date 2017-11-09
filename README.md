@@ -1,6 +1,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/60ee3ffac2342ecad31a/maintainability)](https://codeclimate.com/github/ranjeet867/ClientOnboarding/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/60ee3ffac2342ecad31a/test_coverage)](https://codeclimate.com/github/ranjeet867/ClientOnboarding/test_coverage)
 [![StyleCI](https://styleci.io/repos/109518217/shield?branch=master)](https://styleci.io/repos/109518217)
+[![CircleCI](https://circleci.com/gh/ranjeet867/ClientOnboarding.svg?style=svg)](https://circleci.com/gh/ranjeet867/ClientOnboarding)
 
 # ClientOnboarding
 Save Client data into csv file
@@ -37,4 +38,4 @@ Used for csv read and write. It has pagination feature to paginate csv data
 #### In progress
 
  1. Automated PHPUnit Test
- 2. CircleCi integration for continuous integration
+ 

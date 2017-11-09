@@ -1,5 +1,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/60ee3ffac2342ecad31a/maintainability)](https://codeclimate.com/github/ranjeet867/ClientOnboarding/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/60ee3ffac2342ecad31a/test_coverage)](https://codeclimate.com/github/ranjeet867/ClientOnboarding/test_coverage)
+[![StyleCI](https://styleci.io/repos/109518217/shield?branch=master)](https://styleci.io/repos/109518217)
 
 # ClientOnboarding
 Save Client data into csv file

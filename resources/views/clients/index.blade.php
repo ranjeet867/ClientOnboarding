@@ -72,15 +72,15 @@
                             <ul class="pagination pull-right">
 
                                 @if ($page != 1)
-                                    <li><a href="{{ url('clients?page=1')}}">«</a></li>
+                                    <li><a href="{{ url('clients?page='.($page -1))}}">«</a></li>
                                 @endif
                                 @for ($i = 1; $i <= round($count/10); $i++)
 
                                     <li><a href="{{ url('clients?page=' . $i)  }}"
                                            @if ($page == $i) class="active" @endif >{{$i}}</a></li>
                                 @endfor
-                                @if ($page != round($count/10) and $page != 1)
-                                    <li><a href="{{ url('clients?page=' . $count/10)}}">»</a></li>
+                                @if ($page != round($count/10) and round($count/10) > 1)
+                                    <li><a href="{{ url('clients?page=' . round($count/10))}}">»</a></li>
                                 @endif
 
                             </ul>

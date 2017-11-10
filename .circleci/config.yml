@@ -8,6 +8,9 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/php:7.1-browsers
+    environment:
+      - APP_ENV: local
+
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -34,7 +37,8 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: composer install -n --prefer-dist
+      - run: cp .env.testing .env
+      - run: composer install -n --ignore-platform-reqs
 
       - save_cache:
           paths:
@@ -42,4 +46,6 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
 
       # run tests!
+      - run: php artisan dusk:install
+      - run: php artisan dusk
       - run: vendor/bin/phpunit

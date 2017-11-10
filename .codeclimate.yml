@@ -2,5 +2,4 @@ engines:
   phpcodesniffer:
     enabled: true
     config:
-    	standard: "PSR2,PSR4"
-    	ignore_warnings: true
+    	standard: "PSR1,PSR2"

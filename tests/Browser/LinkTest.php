@@ -19,11 +19,11 @@ class LinkTest extends DuskTestCase
                 ->assertSee('Client Onboarding!');
         });
 
-        $this->browse(function (Browser $browser) {
+        /*$this->browse(function (Browser $browser) {
             $browser->visit('/')
                     ->clickLink('Clients')
                     ->assertSee('Client Listings');
-        });
+        });*/
 
         $this->browse(function (Browser $browser) {
             $browser->visit('/')

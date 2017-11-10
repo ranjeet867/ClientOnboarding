@@ -11,8 +11,10 @@ class ClientTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testWebLinks()
     {
-        $this->assertTrue(true);
+        $this->get('/clients')->assertSee('Client Listings');
+        $this->get('/clients/create')->assertSee('Client Onboarding Form');
+        $this->get('/')->assertSee('Client Onboarding!');
     }
 }

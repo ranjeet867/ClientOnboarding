@@ -19,13 +19,26 @@ Live Demo : http://35.196.193.75/clients
     
 #### External Library Added
 
-Used for laravel forms generation
+1. Used for laravel forms generation
 
-    "laravelcollective/html": "^5.5"
+    `"laravelcollective/html": "^5.5"`
 
-Used for csv read and write. It has pagination feature to paginate csv data 
+2. Used for csv read and write. It has pagination feature to paginate csv data 
 
-    "league/csv": "^9.0",
+    `"league/csv": "^9.0"`
+    
+3. Laravel Dusk
+
+    `composer require --dev laravel/dusk`
+    
+    `php artisan dusk:install`
+    
+## Docker Public Image ranjeet867/laravel5.5-client
+
+**Usage:** 
+
+    docker pull ranjeet867/laravel5.5-client
+    docker run -p 8181:8181 Laravel5.5-client
 
 
 
@@ -34,6 +47,9 @@ Used for csv read and write. It has pagination feature to paginate csv data
 1. logentries.com to save logs in cloud
 2. codeclimate is used to check code quality
 3. Google Cloud Services is used for hosting
+4. StyleCI integrations
+5. CircleCI Integration
+6. Docker 
 
 #### In progress
 

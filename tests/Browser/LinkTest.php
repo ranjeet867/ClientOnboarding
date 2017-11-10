@@ -7,7 +7,6 @@ use Tests\DuskTestCase;
 
 class LinkTest extends DuskTestCase
 {
-
     public function testIsDirWritable()
     {
         $this->assertDirectoryIsWritable(storage_path().'/csv');
@@ -37,5 +36,4 @@ class LinkTest extends DuskTestCase
                 ->assertSee('Client Onboarding Form');
         });
     }
-
 }

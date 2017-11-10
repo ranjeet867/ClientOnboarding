@@ -20,7 +20,7 @@ class ClientController extends Controller
      */
     public function __construct()
     {
-        $this->file = storage_path().'/csv/clientData.csv';
+        $this->file = storage_path() . '/csv/clientData.csv';
     }
 
     /**
@@ -31,6 +31,14 @@ class ClientController extends Controller
     public function index(Request $request)
     {
         $page = $request->get('page', 1);
+
+        $checkFile = File::exists($this->file);
+
+        if (!$checkFile) {
+            $writer = Writer::createFromPath($this->file, 'a');
+            $writer->insertOne(['First Name', 'Last Name', 'DOB', 'Mobile', 'E-mail', 'Nationality', 'Address', 'Gender', 'Country',
+                'City', 'State', 'Zip', 'Education',]); //Inserting Header
+        }
 
         $reader = Reader::createFromPath($this->file, 'r');
         $reader->setHeaderOffset(0);
@@ -85,7 +93,7 @@ class ClientController extends Controller
 
         if (!$checkFile) {
             $writer->insertOne(['First Name', 'Last Name', 'DOB', 'Mobile', 'E-mail', 'Nationality', 'Address', 'Gender', 'Country',
-                'City', 'State', 'Zip', 'Education', ]); //Inserting Header
+                'City', 'State', 'Zip', 'Education',]); //Inserting Header
         }
 
         $writer->insertOne($array);

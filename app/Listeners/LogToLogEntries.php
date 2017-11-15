@@ -3,12 +3,12 @@
 namespace App\Listeners;
 
 use App\Events\ClientCreated;
+use App\Jobs\SaveClientDataToCSV;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use App\Jobs\SaveClientDataToCSV;
 
 class LogToLogEntries implements ShouldQueue
 {

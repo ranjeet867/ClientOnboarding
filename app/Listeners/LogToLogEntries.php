@@ -3,14 +3,11 @@
 namespace App\Listeners;
 
 use App\Events\ClientCreated;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
 class LogToLogEntries implements ShouldQueue
 {
-
-
     /**
      * The name of the connection the job should be sent to.
      *
@@ -38,14 +35,15 @@ class LogToLogEntries implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  ClientCreated  $event
+     * @param ClientCreated $event
+     *
      * @return void
      */
     public function handle(ClientCreated $event)
     {
         //
         Log::info('A New Client Created');
-        $client =  json_encode($event->client);
+        $client = json_encode($event->client);
         Log::info('A New Client Created' + $client->first_name);
     }
 }

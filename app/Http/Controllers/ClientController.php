@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ClientCreated;
 use App\Http\Requests\StoreClient;
 use File;
 use Illuminate\Http\Request;
-use App\Events\ClientCreated;
 use League\Csv\Reader;
 use League\Csv\Statement;
 use League\Csv\Writer;

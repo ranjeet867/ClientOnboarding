@@ -41,9 +41,7 @@ class LogToLogEntries implements ShouldQueue
      */
     public function handle(ClientCreated $event)
     {
-        //
-        Log::info('A New Client Created');
-        $client = json_encode($event->client);
-        Log::info('A New Client Created' + $client->first_name);
+        $client = (object)($event->client);
+        Log::info('A New Client Created' . $client->first_name);
     }
 }

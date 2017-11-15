@@ -3,15 +3,14 @@
 namespace App\Listeners;
 
 use App\Events\ClientCreated;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
 class LogToLogEntries implements ShouldQueue
 {
-
     use Dispatchable, InteractsWithQueue, SerializesModels;
 
     /**
@@ -47,7 +46,7 @@ class LogToLogEntries implements ShouldQueue
      */
     public function handle(ClientCreated $event)
     {
-        $client = (object)($event->client);
-        Log::info('A New Client Created' . $client->first_name);
+        $client = (object) ($event->client);
+        Log::info('A New Client Created'.$client->first_name);
     }
 }

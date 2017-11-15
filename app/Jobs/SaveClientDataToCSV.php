@@ -2,13 +2,13 @@
 
 namespace App\Jobs;
 
+use File;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use File;
 use League\Csv\Writer;
 
 class SaveClientDataToCSV implements ShouldQueue
@@ -49,11 +49,9 @@ class SaveClientDataToCSV implements ShouldQueue
 
         if (!$checkFile) {
             $writer->insertOne(['First Name', 'Last Name', 'DOB', 'Mobile', 'E-mail', 'Nationality', 'Address', 'Gender', 'Country',
-                'City', 'State', 'Zip', 'Education',]); //Inserting Header
+                'City', 'State', 'Zip', 'Education', ]); //Inserting Header
         }
 
         $data = $writer->insertOne($this->client);
-
     }
-
 }

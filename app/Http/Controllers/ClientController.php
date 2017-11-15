@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreClient;
 use File;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use App\Events\ClientCreated;
 use League\Csv\Reader;
 use League\Csv\Statement;
 use League\Csv\Writer;
@@ -96,9 +96,9 @@ class ClientController extends Controller
                 'City', 'State', 'Zip', 'Education',]); //Inserting Header
         }
 
-        $writer->insertOne($array);
+        $data = $writer->insertOne($array);
 
-        Log::info('A New Client Created');
+        event(new ClientCreated($array));
 
         return redirect()->back()->with('message', 'Successfully added');
     }

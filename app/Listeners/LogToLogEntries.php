@@ -3,11 +3,17 @@
 namespace App\Listeners;
 
 use App\Events\ClientCreated;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Log;
 
 class LogToLogEntries implements ShouldQueue
 {
+
+    use Dispatchable, InteractsWithQueue, SerializesModels;
+
     /**
      * The name of the connection the job should be sent to.
      *

@@ -20,7 +20,7 @@ class ClientController extends Controller
      */
     public function __construct()
     {
-        $this->file = storage_path().'/csv/clientData.csv';
+        $this->file = storage_path() . '/csv/clientData.csv';
     }
 
     /**
@@ -37,7 +37,7 @@ class ClientController extends Controller
         if (!$checkFile) {
             $writer = Writer::createFromPath($this->file, 'a');
             $writer->insertOne(['First Name', 'Last Name', 'DOB', 'Mobile', 'E-mail', 'Nationality', 'Address', 'Gender', 'Country',
-                'City', 'State', 'Zip', 'Education', ]); //Inserting Header
+                'City', 'State', 'Zip', 'Education',]); //Inserting Header
         }
 
         $reader = Reader::createFromPath($this->file, 'r');
@@ -81,24 +81,7 @@ class ClientController extends Controller
         $request['address'] = str_replace("\r\n", '', $request->get('address'));
         $array = $request->toArray();
 
-        $checkFile = File::exists($this->file);
-
-        // To capitalize the first character
-        $formatter = function (array $row): array {
-            return array_map('ucfirst', $row);
-        };
-
-        $writer = Writer::createFromPath($this->file, 'a');
-        $writer->addFormatter($formatter);
-
-        if (!$checkFile) {
-            $writer->insertOne(['First Name', 'Last Name', 'DOB', 'Mobile', 'E-mail', 'Nationality', 'Address', 'Gender', 'Country',
-                'City', 'State', 'Zip', 'Education', ]); //Inserting Header
-        }
-
-        $data = $writer->insertOne($array);
-
-        event(new ClientCreated($array));
+        event(new ClientCreated($this->file, $array));
 
         return redirect()->back()->with('message', 'Successfully added');
     }

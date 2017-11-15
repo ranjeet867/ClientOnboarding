@@ -14,14 +14,17 @@ class ClientCreated
 
     public $client;
 
+    public $file;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($client)
+    public function __construct($file, $client)
     {
         $this->client = $client;
+        $this->file = $file;
     }
 
     /**

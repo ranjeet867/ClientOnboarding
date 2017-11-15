@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\SaveClientDataToCSV;
 
 class LogToLogEntries implements ShouldQueue
 {
@@ -46,7 +47,9 @@ class LogToLogEntries implements ShouldQueue
      */
     public function handle(ClientCreated $event)
     {
-        $client = (object) ($event->client);
-        Log::info('A New Client Created'.$client->first_name);
+        $client = $event->client;
+        $file = $event->file;
+        SaveClientDataToCSV::dispatch($file, $client);
+        Log::info('A New Client Created : '.$client['first_name']);
     }
 }

@@ -80,6 +80,9 @@ class ClientCreateTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
+
+        $this->withoutMiddleware();
+        
         echo 'Testing ...'."\n";
         $this->file = storage_path().'/csv/clientData.csv';
         $checkFile = File::exists($this->file);
@@ -90,8 +93,5 @@ class ClientCreateTest extends TestCase
                 'City', 'State', 'Zip', 'Education', ]); //Inserting Header
         }
 
-        if(File::exists($this->file)) {
-            dd('hfkjhfk');
-        }
     }
 }

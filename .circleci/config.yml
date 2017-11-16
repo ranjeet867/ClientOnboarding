@@ -27,6 +27,7 @@ jobs:
     steps:
       - checkout
 
+      - run: sudo apt-get update
       - run:
           name: Install PHP libzip-dev
           command: sudo apt-get install -y libzip-dev
@@ -35,7 +36,8 @@ jobs:
          name: Install PHP zip
          command: sudo docker-php-ext-install zip
 
-      - run: sudo apt-get install php-mysql
+      - run: sudo apt-get -y install mysql-server mysql-client
+      - run: sudo apt-get install php7.1-mysql
 
       # Download and cache dependencies
       - restore_cache:

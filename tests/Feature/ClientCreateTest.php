@@ -12,8 +12,8 @@ class ClientCreateTest extends TestCase
 {
     protected $file;
 
-    public function isWritableTest(){
-
+    public function isWritableTest()
+    {
         echo 'Check File Exist...'."\n";
 
         $this->assertFileExists($this->file);
@@ -90,7 +90,7 @@ class ClientCreateTest extends TestCase
                 'City', 'State', 'Zip', 'Education', ]); //Inserting Header
         }
 
-        if(File::exists($this->file)) {
+        if (File::exists($this->file)) {
             dd('hfkjhfk');
         }
     }

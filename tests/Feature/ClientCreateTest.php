@@ -12,8 +12,8 @@ class ClientCreateTest extends TestCase
 {
     protected $file;
 
-    public function isWritableTest(){
-
+    public function isWritableTest()
+    {
         echo 'Check File Exist...'."\n";
 
         $this->assertFileExists($this->file);

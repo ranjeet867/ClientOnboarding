@@ -12,8 +12,8 @@ class ClientCreateTest extends TestCase
 {
     protected $file;
 
-    public function isWritableTest(){
-
+    public function isWritableTest()
+    {
         echo 'Check File Exist...'."\n";
 
         $this->assertFileExists($this->file);
@@ -90,6 +90,5 @@ class ClientCreateTest extends TestCase
             $writer->insertOne(['First Name', 'Last Name', 'DOB', 'Mobile', 'E-mail', 'Nationality', 'Address', 'Gender', 'Country',
                 'City', 'State', 'Zip', 'Education', ]); //Inserting Header
         }
-
     }
 }

@@ -19,7 +19,6 @@ class ClientCreateTest extends TestCase
      */
     public function testClientFormSave()
     {
-        $this->withoutMiddleware();
         echo 'Testing Client form submission...'."\n";
 
         $data = [
@@ -44,6 +43,8 @@ class ClientCreateTest extends TestCase
                 ],
             ],
         ];
+
+        dd($this->post('/clients', $data)->dump());
 
         $r = $this->post('/clients', $data)
             ->assertStatus(302);

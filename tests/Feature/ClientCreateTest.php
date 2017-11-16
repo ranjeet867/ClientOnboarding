@@ -12,8 +12,8 @@ class ClientCreateTest extends TestCase
 {
     protected $file;
 
-    public function isWritableTest(){
-
+    public function isWritableTest()
+    {
         echo 'Check File Exist...'."\n";
 
         $this->assertFileExists($this->file);
@@ -82,7 +82,7 @@ class ClientCreateTest extends TestCase
         parent::setUp();
 
         $this->withoutMiddleware();
-        
+
         echo 'Testing ...'."\n";
         $this->file = storage_path().'/csv/clientData.csv';
         $checkFile = File::exists($this->file);
@@ -92,6 +92,5 @@ class ClientCreateTest extends TestCase
             $writer->insertOne(['First Name', 'Last Name', 'DOB', 'Mobile', 'E-mail', 'Nationality', 'Address', 'Gender', 'Country',
                 'City', 'State', 'Zip', 'Education', ]); //Inserting Header
         }
-
     }
 }

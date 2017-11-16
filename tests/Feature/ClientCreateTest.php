@@ -51,8 +51,6 @@ class ClientCreateTest extends TestCase
             ],
         ];
 
-        dd($this->post('/clients', $data)->dump());
-
         $r = $this->post('/clients', $data)
             ->assertStatus(302);
     }
@@ -82,7 +80,7 @@ class ClientCreateTest extends TestCase
         parent::setUp();
 
         $this->withoutMiddleware();
-        
+
         echo 'Testing ...'."\n";
         $this->file = storage_path().'/csv/clientData.csv';
         $checkFile = File::exists($this->file);

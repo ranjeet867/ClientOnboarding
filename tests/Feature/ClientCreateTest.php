@@ -89,5 +89,9 @@ class ClientCreateTest extends TestCase
             $writer->insertOne(['First Name', 'Last Name', 'DOB', 'Mobile', 'E-mail', 'Nationality', 'Address', 'Gender', 'Country',
                 'City', 'State', 'Zip', 'Education', ]); //Inserting Header
         }
+
+        if(File::exists($this->file)) {
+            dd('hfkjhfk');
+        }
     }
 }

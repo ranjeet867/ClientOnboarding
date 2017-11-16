@@ -38,9 +38,15 @@ jobs:
 
       - run: cp .env.testing .env
       - run: composer install -n --ignore-platform-reqs
+
       - run:
          name: Run Application
          command: sudo php artisan serve
+         background: true
+
+      - run:
+         name: Run Horizon
+         command: sudo php artisan horizon
          background: true
 
       - save_cache:

@@ -15,13 +15,6 @@ class LogToLogEntries implements ShouldQueue
     use Dispatchable, InteractsWithQueue, SerializesModels;
 
     /**
-     * The name of the connection the job should be sent to.
-     *
-     * @var string|null
-     */
-    public $connection = 'redis';
-
-    /**
      * The name of the queue the job should be sent to.
      *
      * @var string|null

@@ -45,8 +45,8 @@ jobs:
          background: true
 
       - run:
-         name: Run Horizon
-         command: sudo php artisan horizon
+         name: Run Queue worker
+         command: sudo php artisan queue:work
          background: true
 
       - save_cache:

@@ -7,9 +7,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use File;
 use League\Csv\Reader;
 use League\Csv\Statement;
+use League\Csv\Writer;
 
 class ClientCreateTest extends TestCase
 {
+
+    protected $file;
 
     /**
      * A basic test example.
@@ -18,8 +21,7 @@ class ClientCreateTest extends TestCase
      */
     public function testClientFormSave()
     {
-
-        echo 'Testing Client form submission...'."\n";
+        echo 'Testing Client form submission...' . "\n";
 
         $data = [
             '_token' => csrf_token(),
@@ -51,22 +53,37 @@ class ClientCreateTest extends TestCase
 
     public function testDataSaved()
     {
-        sleep(1);
 
-        echo 'Testing Client form data saved in file ...'."\n";
-
-        $file = storage_path() . '/csv/clientData.csv';
-
-        $reader = Reader::createFromPath($file, 'r');
+        echo 'Testing Client form data saved in file ...' . "\n";
+        $reader = Reader::createFromPath($this->file, 'r');
         $reader->setHeaderOffset(0);
         $count = count($reader);
+        if ($count < 1) {
+            $count = 1;
+        }
         $stmt = (new Statement())
-            ->offset($count-1)
+            ->offset($count - 1)
             ->limit(1);
 
         $records = $stmt->process($reader);
         $records = $records->getRecords()->current();
 
         $this->assertEquals('Ranjeet', $records['First Name']);
+        unlink($this->file);
     }
+
+    protected function setUp()
+    {
+        parent::setUp();
+        echo 'Testing ...' . "\n";
+        $this->file = storage_path() . '/csv/clientData.csv';
+        $checkFile = File::exists($this->file);
+
+        if (!$checkFile) {
+            $writer = Writer::createFromPath($this->file, 'a');
+            $writer->insertOne(['First Name', 'Last Name', 'DOB', 'Mobile', 'E-mail', 'Nationality', 'Address', 'Gender', 'Country',
+                'City', 'State', 'Zip', 'Education',]); //Inserting Header
+        }
+    }
+
 }

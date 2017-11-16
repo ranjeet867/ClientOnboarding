@@ -2,15 +2,13 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use File;
 use League\Csv\Reader;
 use League\Csv\Statement;
+use Tests\TestCase;
 
 class ClientCreateTest extends TestCase
 {
-
     /**
      * A basic test example.
      *
@@ -18,35 +16,33 @@ class ClientCreateTest extends TestCase
      */
     public function testClientFormSave()
     {
-
         echo 'Testing Client form submission...'."\n";
 
         $data = [
-            '_token' => csrf_token(),
-            'first_name' => "Ranjeet",
-            'last_name' => "Singh",
-            'dob' => "11/08/2017",
-            'mobile' => "8750988712",
-            'email' => "ranjeetsingh867@gmail.com",
-            'nationality' => "India",
-            'gender' => "Female",
-            'address' => "G-3/253A STREET NO.3, 5TH PUSTA↵SONIA VIHAR, DELHI POLICE SIDE",
-            'city' => "DELHI",
-            'state' => "DELHI",
-            'zip' => "11OO94",
-            'country' => "India",
-            'education' => [
+            '_token'      => csrf_token(),
+            'first_name'  => 'Ranjeet',
+            'last_name'   => 'Singh',
+            'dob'         => '11/08/2017',
+            'mobile'      => '8750988712',
+            'email'       => 'ranjeetsingh867@gmail.com',
+            'nationality' => 'India',
+            'gender'      => 'Female',
+            'address'     => 'G-3/253A STREET NO.3, 5TH PUSTA↵SONIA VIHAR, DELHI POLICE SIDE',
+            'city'        => 'DELHI',
+            'state'       => 'DELHI',
+            'zip'         => '11OO94',
+            'country'     => 'India',
+            'education'   => [
                 [
-                    'college' => "Hindu College",
-                    'degree' => "B.Sc",
-                    'year' => "1991",
-                ]
+                    'college' => 'Hindu College',
+                    'degree'  => 'B.Sc',
+                    'year'    => '1991',
+                ],
             ],
         ];
 
         $r = $this->post('/clients', $data)
             ->assertStatus(302);
-
     }
 
     public function testDataSaved()
@@ -55,13 +51,13 @@ class ClientCreateTest extends TestCase
 
         echo 'Testing Client form data saved in file ...'."\n";
 
-        $file = storage_path() . '/csv/clientData.csv';
+        $file = storage_path().'/csv/clientData.csv';
 
         $reader = Reader::createFromPath($file, 'r');
         $reader->setHeaderOffset(0);
         $count = count($reader);
         $stmt = (new Statement())
-            ->offset($count-1)
+            ->offset($count - 1)
             ->limit(1);
 
         $records = $stmt->process($reader);

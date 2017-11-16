@@ -8,6 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/php:7.1-browsers
+      - image: mysql:5.7
     environment:
       - APP_ENV: local
 
@@ -38,6 +39,7 @@ jobs:
 
       - run: cp .env.testing .env
       - run: composer install -n --ignore-platform-reqs
+      - run: php artisan migrate
 
       - run:
          name: Run Application

@@ -29,7 +29,7 @@ jobs:
 
       - run: sudo apt-get install software-properties-common python-software-properties
       - run: sudo add-apt-repository ppa:ondrej/php
-    
+
       - run:
           name: Install PHP libzip-dev
           command: sudo apt-get install -y libzip-dev
@@ -39,7 +39,7 @@ jobs:
          command: sudo docker-php-ext-install zip
 
       - run: sudo apt-get -y install mysql-server mysql-client
-      - run: sudo apt-get install php7.1-mysql
+      - run: sudo docker-php-ext-install mysqli pdo pdo_mysql
 
       # Download and cache dependencies
       - restore_cache:

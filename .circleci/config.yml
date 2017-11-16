@@ -47,24 +47,24 @@ jobs:
 
       - run: cp .env.testing .env
       - run: composer install -n --ignore-platform-reqs
-      - run: php artisan migrate
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
 
-      - run:
-         name: Run Application
-         command: sudo php artisan serve
-         background: true
+      - run: php artisan migrate
 
       - run:
          name: Run Queue worker
          command: sudo php artisan queue:listen
          background: true
 
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-
       # run tests!
+      - run: vendor/bin/phpunit
+
+      - run:
+         name: Run Application
+         command: sudo php artisan serve
+         background: true
 
       - run: php artisan dusk
-      - run: vendor/bin/phpunit

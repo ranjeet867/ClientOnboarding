@@ -35,7 +35,7 @@ jobs:
          name: Install PHP zip
          command: sudo docker-php-ext-install zip
 
-      - run: sudo apt-get install php7.1-mysql
+      - run: sudo apt-get install php-mysql
 
       # Download and cache dependencies
       - restore_cache:

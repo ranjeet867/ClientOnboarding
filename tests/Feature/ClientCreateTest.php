@@ -19,6 +19,7 @@ class ClientCreateTest extends TestCase
      */
     public function testClientFormSave()
     {
+        $this->withoutMiddleware();
         echo 'Testing Client form submission...'."\n";
 
         $data = [

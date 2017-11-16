@@ -9,7 +9,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/php:7.1-browsers
     environment:
-      - APP_ENV: testing
+      - APP_ENV: local
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -46,7 +46,7 @@ jobs:
 
       - run:
          name: Run Queue worker
-         command: sudo php artisan queue:work
+         command: sudo php artisan queue:listen
          background: true
 
       - save_cache:

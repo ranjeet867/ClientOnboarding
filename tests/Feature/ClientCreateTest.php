@@ -51,7 +51,7 @@ class ClientCreateTest extends TestCase
 
     public function testDataSaved()
     {
-        sleep(15);
+        sleep(1);
 
         echo 'Testing Client form data saved in file ...'."\n";
 

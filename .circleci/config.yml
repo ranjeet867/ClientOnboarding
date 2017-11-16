@@ -8,6 +8,12 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/php:7.1-browsers
+      - image: mysql:5.7
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_DATABASE: circle_test
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USER: root
     environment:
       - APP_ENV: testing
 
@@ -29,6 +35,9 @@ jobs:
          name: Install PHP zip
          command: sudo docker-php-ext-install zip
 
+      - run: sudo apt-get -y install mysql-server mysql-client
+      - run: sudo docker-php-ext-install mysqli pdo pdo_mysql
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -38,23 +47,24 @@ jobs:
 
       - run: cp .env.testing .env
       - run: composer install -n --ignore-platform-reqs
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+
+      - run: php artisan migrate
+
+      - run:
+         name: Run Queue worker
+         command: sudo php artisan queue:listen
+         background: true
+
+      # run tests!
+      - run: vendor/bin/phpunit
 
       - run:
          name: Run Application
          command: sudo php artisan serve
          background: true
 
-      - run:
-         name: Run Horizon
-         command: sudo php artisan horizon
-         background: true
-
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-
-      # run tests!
-
       - run: php artisan dusk
-      - run: vendor/bin/phpunit

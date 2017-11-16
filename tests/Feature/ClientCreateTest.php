@@ -5,10 +5,20 @@ namespace Tests\Feature;
 use File;
 use League\Csv\Reader;
 use League\Csv\Statement;
+use League\Csv\Writer;
 use Tests\TestCase;
 
 class ClientCreateTest extends TestCase
 {
+    protected $file;
+
+    public function isWritableTest()
+    {
+        echo 'Check File Exist...'."\n";
+
+        $this->assertFileExists($this->file);
+    }
+
     /**
      * A basic test example.
      *
@@ -47,15 +57,13 @@ class ClientCreateTest extends TestCase
 
     public function testDataSaved()
     {
-        sleep(1);
-
         echo 'Testing Client form data saved in file ...'."\n";
-
-        $file = storage_path().'/csv/clientData.csv';
-
-        $reader = Reader::createFromPath($file, 'r');
+        $reader = Reader::createFromPath($this->file, 'r');
         $reader->setHeaderOffset(0);
         $count = count($reader);
+        if ($count < 1) {
+            $count = 1;
+        }
         $stmt = (new Statement())
             ->offset($count - 1)
             ->limit(1);
@@ -64,5 +72,23 @@ class ClientCreateTest extends TestCase
         $records = $records->getRecords()->current();
 
         $this->assertEquals('Ranjeet', $records['First Name']);
+        unlink($this->file);
+    }
+
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->withoutMiddleware();
+
+        echo 'Testing ...'."\n";
+        $this->file = storage_path().'/csv/clientData.csv';
+        $checkFile = File::exists($this->file);
+
+        if (!$checkFile) {
+            $writer = Writer::createFromPath($this->file, 'a');
+            $writer->insertOne(['First Name', 'Last Name', 'DOB', 'Mobile', 'E-mail', 'Nationality', 'Address', 'Gender', 'Country',
+                'City', 'State', 'Zip', 'Education', ]); //Inserting Header
+        }
     }
 }
